@@ -1,5 +1,6 @@
 # JSRobuxStealer
--DM Dreamer#5114 For Assistance\
+-DM Dreamer#5114 For Assistance\/
+
 This Tool Steals Victim's Robux When Executed By Buying Your Product.
 ![preview](https://user-images.githubusercontent.com/80835991/151730004-f9df59be-d065-43a3-9ae0-4bc37ac2eb08.gif)
 
