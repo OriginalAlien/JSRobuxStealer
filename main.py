@@ -14,8 +14,10 @@ def getProductInfo(product_url):
                 break
 
         dataProductID = str(html[dataProductID_unindex:dataProductID_index])
+    else:
+        print("Couldn't Find Data Product ID")
 
-    #Product ID Detect
+    #Seller ID Detect
     if "catalog" in product_url:
         productID1 = product_url.find("catalog")
         productID2 = productID1 + 8
@@ -25,6 +27,8 @@ def getProductInfo(product_url):
             if product_url[productID2] == "/":
                 break
         productID = product_url[productID1+8:productID2]
+    else:
+        print("Couldn't Find Product ID")
 
     #Product Price Detect
     if "text-robux-lg wait-for-i18n-format-render" in html:
@@ -34,10 +38,11 @@ def getProductInfo(product_url):
             price2 += 1
             if html[price2] == "<":
                 break
+        
         productPrice = html[price1+1:price2]
-
+        productPrice = productPrice.replace(',', '')
     else:
-        print("Couldn't Find Price :(")
+        print("Couldn't Find Price")
     
     #printing output
     javascript_format = 'xJavascript:fetch("https://economy.roblox.com/v2/user-products/' + str(dataProductID) + '/purchase",{body:JSON.stringify({"expectedCurrency": ' + productPrice + ',"expectedPrice": ' + productPrice + ',"expectedSellerId": ' + str(productID) + '}),method:"POST",credentials:"include",headers:{"Content-Type":"application/json","x-csrf-token":Roblox.XsrfToken.getToken()}})'
@@ -79,3 +84,5 @@ while True:
 
     elif "roblox" in productURL_input:
         getProductInfo(productURL_input)
+
+#UPDATE: Removed Comma In Prices
